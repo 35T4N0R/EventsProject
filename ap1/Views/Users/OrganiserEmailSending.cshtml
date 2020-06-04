@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "OrganiserEmailSending";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Wysyłanie Emaila do uczestników wydarzenia</h2>
+<hr />
+@using (Html.BeginForm("OrganiserEmailSending", "Users", new { eventId = HttpContext.Current.Request.QueryString["eventId"]},FormMethod.Post))
+{
+<div align="left">
+
+    <br />
+    Tytuł Emaila
+    <br />
+    <input type="text" name="Title" style="width:600px" />
+    <br />
+    Treść Emaila
+    <br />
+    <textarea name="body" style="height:200px;width:600px"></textarea>
+    <br />
+    <input type="submit" value="Wyślij Email" />
+</div>
+}

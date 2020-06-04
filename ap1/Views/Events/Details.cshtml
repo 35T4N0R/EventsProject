@@ -1,0 +1,66 @@
+﻿@model ap1.Models.Event
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div align="center">
+    <h2>Szczegóły wydarzenia</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+        <dd>@Html.DisplayFor(model => model.Name)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Type)</dt>
+        <dd>@Html.DisplayFor(model => model.Type)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Localization)</dt>
+        <dd>@Html.DisplayFor(model => model.Localization)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Date)</dt>
+        <dd>@Html.DisplayFor(model => model.Date)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Time)</dt>
+        <dd>@Html.DisplayFor(model => model.Time)</dd>
+
+        <dt><b>Organizator</b></dt>
+        <dd>@Html.DisplayFor(model => model.OrganiserEmail)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.ExpectedTicketAmount)</dt>
+        <dd>@Html.DisplayFor(model => model.ExpectedTicketAmount)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.MaxTicketAmountForOnePerson)</dt>
+        <dd>@Html.DisplayFor(model => model.MaxTicketAmountForOnePerson)</dd>
+
+        <dt>@Html.DisplayName("Wolne miejsca")</dt>
+        <dd>@ViewBag.ilosc</dd>
+
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <dd>Aby zapisać się do wydarzenia @Html.ActionLink("Zaloguj się", "Login", "Users")!</dd>
+        }
+        else if (ViewBag.IsOrganiser == true)
+        {
+            @Html.ActionLink("Usuń Wydarzenie", "Delete", "Events", new { eventId = Model.EventId }, htmlAttributes: null)
+        }
+        else if (ViewBag.IsOrganiser == false)
+        {
+            if (ViewBag.Assigned == false)
+            {
+                <dt>Zapisz się!</dt>
+
+                <dd>@Html.ActionLink("Zapisz", "Assign", "Events", new { EventId = Model.EventId }, null) </dd>
+
+            }
+            else if (ViewBag.Assigned == true)
+            {
+                <dt>Wypisz sie!</dt>
+                <dd>@Html.ActionLink("Wypisz", "SignOut", "Events", new { EventId = Model.EventId, redirect = "Details", controler = "Events" }, null)</dd>
+            }
+        }
+
+    </dl>
+    <p>
+        @Html.ActionLink("Powrót", "Index")
+    </p>
+</div>

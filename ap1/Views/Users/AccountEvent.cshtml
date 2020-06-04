@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ap1.Models.Event>
+
+@{
+    ViewBag.Title = "AccountEvent";
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+
+
+<table class="table col-md-10">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EventId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Localization)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedTicketAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxTicketAmountForOnePerson)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.EventId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Localization)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpectedTicketAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxTicketAmountForOnePerson)
+            </td>
+            <td>
+                @Html.ActionLink("Usuń", "Delete", "Events", new { eventId = item.EventId }, htmlAttributes: null) |
+                @Html.ActionLink("Edytuj", "EditEvent", "Events", new { eventId = item.EventId }, htmlAttributes: null) |
+                @Html.ActionLink("Wyślij Email Do Uczestników", "OrganiserEmailSending","Users",new { eventId = item.EventId },htmlAttributes:null)
+            </td>
+
+
+        </tr>
+    }
+
+</table>
+

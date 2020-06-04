@@ -1,0 +1,91 @@
+﻿@model ap1.Models.Serch
+
+@{
+    ViewBag.Title = "Index";
+}
+    
+
+<table class="table col-md-10">
+
+    @using (Html.BeginForm())
+    {
+
+        @Html.HiddenFor(model => model.list)
+        @Html.AntiForgeryToken()
+            <tr>
+                
+                <th>@Html.DisplayName("Miasto:")</th>
+                <td>
+                    @Html.DropDownListFor(model => model.Localization, ViewBag.Miasta as SelectList, new { htmlAttributes = new { @class = "d-inline form-control" } })
+                </td>
+                <th>@Html.DisplayName("Od:")</th>
+                <td>
+                    @Html.EditorFor(model => model.MinDate, new { htmlAttributes = new { @class = "form-control" } })
+                   
+                </td>
+                <th> @Html.DisplayName("Do:")</th>
+                <td>
+                    @Html.EditorFor(model => model.MaxDate, new { htmlAttributes = new { @class = "form-control" } })
+                  
+                </td>
+
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Szukaj" class="btn btn-secondary" />
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+       
+    }
+    <tr></tr>
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.list.First().Name)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.list.First().Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.list.First().Localization)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.list.First().Time)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.list.First().Date)
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @if (Model.list!=null) {
+    foreach (var item in Model.list)
+    {
+        <tr>
+
+            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+           
+            <td>@Html.DisplayFor(modelItem => item.Type)</td>
+           
+            <td>@Html.DisplayFor(modelItem => item.Localization)</td>
+            
+            <td>@Html.DisplayFor(modelItem => item.Time)</td>
+            
+            <td>@Html.DisplayFor(modelItem => item.Date)</td>
+            
+            <td>@Html.ActionLink("Szczegóły", "Details", "Events", new { EventId = item.EventId }, null)</td>
+            <td></td>
+
+
+
+        </tr>
+    }
+    }
+    </table>
+

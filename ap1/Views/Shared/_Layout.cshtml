@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-dark bg-dark">
+
+        @Html.ActionLink("Wydarzenia", "Index", "Events", new { area = "" }, new { @class = "navbar-brand" })
+        <div class="navbar-nav align-items-center flex-row">
+            <ul class="navbar-nav align-items-center flex-row ">
+                @if (Request.IsAuthenticated)
+                {
+
+                    <li class="nav-item">
+
+
+
+                        @using (Html.BeginForm("Logout", "Users", FormMethod.Post, new { id = "logoutForm" }))
+                        {
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link pl-1 pr-1">Wyloguj</a>
+
+                        }
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <a href="/Users/AccountHome" class="nav-link pl-1 pr-1">Konto</a>
+
+                    </li>
+
+                }
+                else
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Zaloguj", "Login", "Users", null, new { id = "login", @class = "nav-link pl-1 pr-1" })
+
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Rejestracja", "Registration", "Users", null, new { id = "register", @class = "nav-link pl-1 pr-1" })
+
+                    </li>
+
+                }
+            </ul>
+
+           </div>
+
+    </nav>
+
+
+
+    <div class="container-fluid">
+
+        @RenderBody()
+        <hr />
+
+
+
+        <footer>
+            <p>&copy; @DateTime.Now.Year - WZW ASP.NET Application</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript"></script>
+    @RenderSection("Scripts", false)
+</body>
+</html>

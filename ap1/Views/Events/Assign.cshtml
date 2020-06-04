@@ -1,0 +1,76 @@
+﻿@model ap1.Models.Assign
+
+@{
+    ViewBag.Title = "Assign";
+}
+
+<h2>Assign</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Assign</h4>
+    <hr />
+    @Html.HiddenFor(model => model.EventId)
+    @Html.HiddenFor(model => model.EmailId)
+    @Html.HiddenFor(model => model.Name)
+    @Html.HiddenFor(model => model.LastName)
+    @Html.HiddenFor(model => model.NIP)
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Name)
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.LastName)
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.LastName)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.EmailId)
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.EmailId)
+        </div>
+    </div>
+
+    @if (ViewBag.isPlatne == true)
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.NIP, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NIP, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NIP, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    }
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Tickets, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Tickets, new { htmlAttributes = new { @class = "form-control" } })
+
+            @Html.ValidationMessage("nullTickets", new { @class = "text-danger" })
+            @Html.ValidationMessage("toManyTikets", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.Tickets, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+

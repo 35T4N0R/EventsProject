@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Pomocnicza strona do API</h2>
+<br />
+<br />
+<br />
+@using (Html.BeginForm("EnrollQRCode", "Users", FormMethod.Post))
+{
+    <div>Id Użytkownika</div>
+    <input type="text" name="UserId" />
+    <div><br/></div>
+    <div>Id Wydarzenia</div>
+    <input type="text" name="EventId" />
+    <div><br /></div>
+    <div>Ilość biletów użytkownika</div>
+    <input type="text" name="TicketAmount" value="1" />
+    <br /><br />
+    <input type="submit" value="Generate" />
+}
+<hr />
+@if (ViewBag.QRCodeImage != null)
+{
+    <div>Wygenerowany kod QR</div>
+    <img src="@ViewBag.QRCodeImage" alt="" style="height:150px;width:150px"/>
+}

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ap1.Models.Event>
+
+@{
+    ViewBag.Title = "AccountUsersEvents";
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+
+
+    <table class="table col-md-10">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EventId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Localization)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpectedTicketAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxTicketAmountForOnePerson)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Localization)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpectedTicketAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxTicketAmountForOnePerson)
+                </td>
+                <td>
+                    @Html.ActionLink("Pobierz Bilet", "DownloadPDF", "Users", new { eventId = item.EventId }, htmlAttributes: null) |
+                    @Html.ActionLink("Wyślij Bilet Na Maila", "SendPDFToEmail", "Users", new { eventId = item.EventId }, htmlAttributes: null) |
+                    @Html.ActionLink("Wypisz", "SignOut", "Events", new { EventId = item.EventId,redirect = "AccountUsersEvents", controler = "Users" }, null)
+                </td>
+
+
+            </tr>
+        }
+
+    </table>
