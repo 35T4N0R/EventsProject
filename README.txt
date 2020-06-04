@@ -4,3 +4,6 @@ W projekcie platformy do organizacji wydarzeñ wykorzystywane s¹ anstêpuj¹ce bibl
 - iTextSharp 5.5.13 - biblioteka ta wykorzystywana jest do stworzenia oraz wype³nienia treœci¹ dokumenty o formacie .pdf
 - QRCoder 1.3.5 - bilioteka ta stosowana jest do tworzenia kodów QR
 - bootstrap 3.0.0 - wykorzystywana jest do modyfikacji wygl¹du stron widokowych
+
+W przypadku b³êdu z folderem roslyn nale¿y uruchomiæ nastêpuj¹ce polecenie w Konsoli Menad¿era Pakietów:
+Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r
